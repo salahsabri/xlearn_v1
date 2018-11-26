@@ -2,7 +2,7 @@ from xlearn.segmentation import seg_train, seg_predict
 from skimage import io
 import imageio
 import os
-import np
+import numpy as np
 #import dxchange
 n=3
 
