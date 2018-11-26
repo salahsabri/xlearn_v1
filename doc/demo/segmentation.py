@@ -14,7 +14,7 @@ content = [x.strip() for x in content]
 batch_size = 4000
 nb_epoch = 50
 nb_down = 3
-nb_gpu = 4
+nb_gpu = 1
 
 # define the data path
 spath =content[0]
