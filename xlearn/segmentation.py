@@ -54,7 +54,7 @@ from xlearn.utils import nor_data, extract_3d, reconstruct_patches
 from xlearn.models import transformer2, transformer3_pooling
 from os.path import join
 from skimage import io
-import imageio
+#import imageio
 
 __authors__ = "Xiaogang Yang, Francesco De Carlo"
 __copyright__ = "Copyright (c) 2018, Argonne National Laboratory"
