@@ -4,7 +4,7 @@ import imageio
 import os
 import numpy as np
 #import dxchange
-n=3
+n=1
 
 with open('paths.txt') as f:
     content = f.readlines()
@@ -47,7 +47,7 @@ imgy=np.concatenate(A2,axis=0)
 
 
 # train the model
-mdl = seg_train(imgx[0], imgy[0], batch_size = batch_size, nb_epoch = nb_epoch, nb_down = nb_down, nb_gpu = nb_gpu)
+mdl = seg_train(imgx, imgy, batch_size = batch_size, nb_epoch = nb_epoch, nb_down = nb_down, nb_gpu = nb_gpu)
 
 # save the trained weights
 mdl.save_weights(wpath)
