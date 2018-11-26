@@ -26,24 +26,10 @@ wpath = content[2]
 
 
 #read the training input 
-image_collection=io.imread_collection(os.path.join(content[0],'*.tif'))
-dat=io.concatenate_images(image_collection)
-number_slice, height,width=dat.shape
-A=[]
-for i in range(n):
-    A.append(dat[i])
-imgx=np.concatenate(A,axis=0)
+imgx=imageio.imread(os.path.join(content[0],os.listdir(content[0])[0]))
 
 #read the training output 
-image_collection2=io.imread_collection(os.path.join(content[1],'*.tif'))
-
-
-dat2=io.concatenate_images(image_collection2)
-number_slice2,height2,width2=dat2.shape
-A2=[]
-for i in range(n):
-    A2.append(dat2[i])
-imgy=np.concatenate(A2,axis=0)
+imgy=imageio.imread(os.path.join(content[1],os.listdir(content[1])[0]))
 
 
 # train the model
@@ -53,7 +39,10 @@ mdl = seg_train(imgx, imgy, batch_size = batch_size, nb_epoch = nb_epoch, nb_dow
 mdl.save_weights(wpath)
 
 
+#read the test input 
+test_x=imageio.imread(os.path.join(content[0],os.listdir(content[0])[2]))
+
 
 # segmentation for the testing data
-test=seg_predict(imgx[1], wpath, spath, nb_down = nb_down, nb_gpu = nb_gpu)
+test=seg_predict(test_x, wpath, spath, nb_down = nb_down, nb_gpu = nb_gpu)
 imageio.imsave(os.path.join(content[3],os.listdir(content[0])[n]),test)
