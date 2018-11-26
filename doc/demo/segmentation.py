@@ -1,5 +1,6 @@
 from xlearn.segmentation import seg_train, seg_predict
 from skimage import io
+import imageio
 #import dxchange
 
 with open(paths.txt) as f:
