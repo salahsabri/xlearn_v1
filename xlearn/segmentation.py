@@ -50,9 +50,11 @@ Module containing model_choose, seg_train and seg_predict routines
 """
 import numpy as np
 import time
-import dxchange
 from xlearn.utils import nor_data, extract_3d, reconstruct_patches
 from xlearn.models import transformer2, transformer3_pooling
+from os.path import join
+from skimage import io
+import imageio
 
 __authors__ = "Xiaogang Yang, Francesco De Carlo"
 __copyright__ = "Copyright (c) 2018, Argonne National Laboratory"
@@ -202,11 +204,13 @@ def seg_predict(img, wpath, spath, patch_size = 32, patch_step = 1,
         predict_y = mdl.predict(predict_x, batch_size=batch_size)
         predict_y = np.reshape(predict_y, (predict_y.shape[0],patch_size, patch_size))
         predict_y = reconstruct_patches(predict_y, (ih, iw), patch_step)
-        fname = spath + 'prd'
-        dxchange.write_tiff(predict_y, fname, dtype='float32')
+      #  imageio.imsave(os.path.join(spath,os.listdir(path)[n]),image_mask[n])
+        return predict_y
 
     else:
         pn, ih, iw = img.shape
+        images = np.empty(pn, dtype=object) # create empty array 
+
         for i in range(pn):
             print('Processing the %s th image' % i)
             tstart = time.time()
@@ -216,6 +220,6 @@ def seg_predict(img, wpath, spath, patch_size = 32, patch_step = 1,
             predict_y = mdl.predict(predict_x, batch_size=batch_size)
             predict_y = np.reshape(predict_y, (len(predict_y), patch_size, patch_size))
             predict_y = reconstruct_patches(predict_y, (ih, iw), patch_step)
-            fname = spath + 'prd-' + str(i)
-            dxchange.write_tiff(predict_y, fname, dtype='float32')
-            print('The prediction runs for %s seconds' % (time.time() - tstart))
+            images[i]=predict_y
+            return images
+            
