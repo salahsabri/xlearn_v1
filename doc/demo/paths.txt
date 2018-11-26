@@ -1,4 +1,4 @@
 /content/drive/My Drive/Deep Learning/Dataset/Z13_400_masked
 /content/drive/My Drive/Deep Learning/Dataset/imageJ
-/content/drive/My Drive/Deep Learning/Algorithms/training weights
+/content/drive/My Drive/Deep Learning/Algorithms/training weights/weights_seg.h5
 /content/drive/My Drive/Deep Learning/Dataset/Deep Learning Data
