@@ -3,6 +3,7 @@ from skimage import io
 import imageio
 import os
 #import dxchange
+n=3
 
 with open('paths.txt') as f:
     content = f.readlines()
