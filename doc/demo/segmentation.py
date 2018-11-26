@@ -19,9 +19,7 @@ spath =content[0]
 # define the path to save the training weights
 wpath = content[2]
 
-# read the training input and output
-imgx = dxchange.read_tiff(spath + 'train_input.tif')
-imgy = dxchange.read_tiff(spath + 'train_output.tif')
+
 
 
 #read the training input 
